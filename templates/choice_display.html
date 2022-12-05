@@ -4,41 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lego Catalog</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='sets.css') }}">
+    <title>Decision Domain</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='choices.css') }}">
 
 </head>
 <body>
     <h1>
-        Lego Catalog Search
+        Decision Domain
     </h1>
 
     <section class="form_container">
         <form class="form-info" action="sets" method="GET">
-                <label for="set_name"> Name:  
-                    <input id="set_name" type="text" name="set_name_contains" value="{{set_name_contains}}">
-                </label>
-                <br>
-            </div>
-
-                <label for="theme_name"> Theme: 
-                    <input id="theme_name"type="text" name="theme_name_contains" value="{{theme_name_contains}}" > 
-                </label>
-                <br>
-            </div>
-
-                <label for="part_count_min"> Minimum Part Count: 
-                    <input id="part_count_min" type="number" name="part_count_gte" value="{{part_count_gte}}">
-                </label>
-                <br>
-            </div>
-
-                <label for="part_count_max"> Maximum Part Count: 
-                    <input id="part_count_max" type="number" name="part_count_lte" value="{{part_count_lte}}" >
-                </label>
-                <br>
-                <br>
-            </div>
             
             <div class="dropdown"> 
                 <label for="limit"> Results per page
@@ -51,8 +27,8 @@
                 </label>
             </div>
             
-            <label class="search">
-                <input type="submit" > </button>
+            <label class="button">
+                <button type="Submit Answer!" > </button>
             </label>
         </form> 
     </section> 
