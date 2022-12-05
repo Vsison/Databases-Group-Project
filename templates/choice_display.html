@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lego Catalog</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='sets.css') }}">
+
+</head>
+<body>
+    <h1>
+        Lego Catalog Search
+    </h1>
+
+    <section class="form_container">
+        <form class="form-info" action="sets" method="GET">
+                <label for="set_name"> Name:  
+                    <input id="set_name" type="text" name="set_name_contains" value="{{set_name_contains}}">
+                </label>
+                <br>
+            </div>
+
+                <label for="theme_name"> Theme: 
+                    <input id="theme_name"type="text" name="theme_name_contains" value="{{theme_name_contains}}" > 
+                </label>
+                <br>
+            </div>
+
+                <label for="part_count_min"> Minimum Part Count: 
+                    <input id="part_count_min" type="number" name="part_count_gte" value="{{part_count_gte}}">
+                </label>
+                <br>
+            </div>
+
+                <label for="part_count_max"> Maximum Part Count: 
+                    <input id="part_count_max" type="number" name="part_count_lte" value="{{part_count_lte}}" >
+                </label>
+                <br>
+                <br>
+            </div>
+            
+            <div class="dropdown"> 
+                <label for="limit"> Results per page
+                    <select for="limit" default="50" name="limit" value="{{limit}}">
+                        <option value="10"> 10 </option>
+                        <option value="50" selected> 50 </option>
+                        <option value="100"> 100 </option>
+                        <option value="250"> 250 </option>
+                    </select>
+                </label>
+            </div>
+            
+            <label class="search">
+                <input type="submit" > </button>
+            </label>
+        </form> 
+    </section> 
+
+    <section>
+        <div class="output_header"> 
+            <h2> Displaying {{count}} Results ... </h2>
+        </div>
+
+        <table class="table">
+            <tbody>
+                {% for row in search %}
+                <tr class="row">
+                    <td> {{row.set_num}} </td>
+                    <td> {{row.set_name }} </td>
+                    <td> {{row.theme_name }} </td>
+                    <td> {{row.year}} </td>
+                    <td> {{row.part_count }} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>
