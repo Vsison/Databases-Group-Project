@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   app:
-    container_name: Databases Group Project
+    container_name: Databases_Group_Project
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile
