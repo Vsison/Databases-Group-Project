@@ -14,6 +14,7 @@ app = Flask(__name__)
 # TODO: create /sets HTML endpoint
 @app.route("/sets")
 def search_sets_html():
+    queryCounter = 0
     nameOfChoices = request.args.get('nameOfChoices', '')
     choiceData = request.args.get('choiceData', '')
     selectedNumTimes = request.args.get('selectedNumTimes',5)
@@ -30,6 +31,7 @@ def search_sets_html():
                            choiceData_contains=choiceData)
         results = search_sets(cur, nameOfChoices_contains=nameOfChoices, choiceData_contains= choiceData,
                               limit=limit, offset=offset, sort_by= sort_by, sort_dir=sort_dir)
+        queryCounter +=1
         page_count  = int(math.round(count/limit))
         return render_template('sets.html', count=count, results=results, nameOfChoices=nameOfChoices, choiceData = choiceData,
         page=page, limit=limit, sort_by = sort_by, sort_dir=sort_dir, page_count = page_count)
@@ -40,6 +42,18 @@ SORT_BY_PARAMS = set(["nameOfChoices", "choiceData",
 # valid sort direction parameters for search_sets function
 SORT_DIR_PARAMS = set(["asc", "desc"])
 
+
+def update_select(cur:cursor,
+                nameOfChoices:str,
+                choiceData:str,
+    cur.execute(f"""
+        SELECT @n := @n + 1 n,
+        nameOfChoices, 
+        choiceData
+        FROM choiceTable, (SELECT @n := 0) m
+        ORDER BY nameOfChoices, choiceData
+    """)
+)
 
 def search_sets(cur: cursor,
                 nameOfChoices_contains: str,
@@ -77,6 +91,7 @@ offset {offset}
     return list(cur)
 
 
+
 def count_sets(cur: cursor,
                nameOfChoices: str,
                choiceData: str,
@@ -91,3 +106,5 @@ where lower(s.nameOfChoices) like lower(%(nameOfChoices_param)s)
         'choiceData_param': f"%{choiceData_contains or ''}%",
     })
     return cur.fetchone()['count']
+
+
