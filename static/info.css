@@ -1,0 +1,54 @@
+body {
+    font-family: system-ui;
+    background: rgb(228, 183, 255);
+    color: white;
+    text-align: center;
+  }
+  
+  h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  h3 {
+    text-shadow: 0.1vw 0.1vw black;
+    color: rgb(143, 236, 36);
+    margin-top: 0vw;
+    margin-bottom: 0.8vw;
+  }
+  .fancy {
+    text-shadow: 0.3vw 0.3vw black;
+    font-size: 6vw;
+    margin-top: 0vw;
+    padding-top: 0vw;
+  }
+  .flex-parent {
+    display: flex;
+    text-shadow: 0.15vw 0.14vw black;
+    font-size: 1vw;
+    color: yellow;
+    margin: 0vw;
+    padding: 0vw;
+  }
+  .jc-center {
+    justify-content: center;
+  }
+  
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 19%;
+    height: 1.2vw;
+    background-color: rgba(255, 255, 255, 0.150);
+    text-align: left;
+  }
+  
+  .footer-text{
+    font-size:0.6vw;
+    text-shadow: 0.05vw 0.05vw rgb(100, 100, 100);
+    padding-left:0.4vw;
+    padding-top:0.28vw;
+    float:left;
+    word-spacing:0vw;
+    margin:0vw;
+  }
