@@ -29,11 +29,11 @@ def search_sets_html():
 
 
     with conn.cursor() as cur:
-        count = count_sets(cur, nameOfChoices = nameOfChoices, choiceData = choiceData, selectedNumTimes = selectedNumTimes
-                page = page, limit = limit, offset - offset, safe_sort_by = 'set_name', safe_sort_dir = 'asc')
-        results = search_sets(cur, nameOfChoices = nameOfChoices, choiceData = choiceData, selectedNumTimes = selectedNumTimes
+        count = count_sets(cur, nameOfChoices = nameOfChoices, choiceData = choiceData, selectedNumTimes = selectedNumTimes,
                 page = page, limit = limit, offset = offset, safe_sort_by = 'set_name', safe_sort_dir = 'asc')
-        return render_template('choice_display.html', nameOfChoices = nameOfChoices, choiceData = choiceData, selectedNumTimes = selectedNumTimes
+        results = search_sets(cur, nameOfChoices = nameOfChoices, choiceData = choiceData, selectedNumTimes = selectedNumTimes,
+                page = page, limit = limit, offset = offset, safe_sort_by = 'set_name', safe_sort_dir = 'asc')
+        return render_template('choice_display.html', nameOfChoices = nameOfChoices, choiceData = choiceData, selectedNumTimes = selectedNumTimes,
                 page = page, offset = offset)
 
 
