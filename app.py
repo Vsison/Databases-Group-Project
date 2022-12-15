@@ -27,7 +27,6 @@ def search_sets_html():
     if page_count is None:
         page_count = 1            
 
-
     with conn.cursor() as cur:
         count = count_sets(cur, nameOfChoices = nameOfChoices, choiceData = choiceData, selectedNumTimes = selectedNumTimes,
                 page = page, limit = limit, offset = offset, safe_sort_by = 'set_name', safe_sort_dir = 'asc')
@@ -35,5 +34,23 @@ def search_sets_html():
                 page = page, limit = limit, offset = offset, safe_sort_by = 'set_name', safe_sort_dir = 'asc')
         return render_template('choice_display.html', nameOfChoices = nameOfChoices, choiceData = choiceData, selectedNumTimes = selectedNumTimes,
                 page = page, offset = offset)
+
+def update_id(cur.cursor, nameOfChoices:str, choiceData:str,
+                selectedNumTimes:int, id:int
+    cur.execute(f"""
+        update choiceData
+        set id = id
+        where id = null
+    """)
+)
+
+def update_table(cur.cursor, table:str, nameOfChoices:str, 
+                choiceData:str,selectedNumTimes:int,id:int
+    cur.execute("""
+        update table
+        set column=nameOfChoices
+        where column=null
+    """)
+)
 
 
