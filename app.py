@@ -35,6 +35,32 @@ def search_sets_html():
         return render_template('choice_display.html', nameOfChoices = nameOfChoices, choiceData = choiceData, selectedNumTimes = selectedNumTimes,
                 page = page, offset = offset)
 
+# TODO: create /sets HTML endpoint
+@app.route('/test/info')
+def instructions():
+    return render_template('info_page.html')
+
+@app.route('/test/question')
+def would_you_rather():
+    table_name = request.args.get('table_name', 'animals')
+    row_id = request.args.get('id', 0)
+    with conn.cursor() as cur:
+        select = select_page_data(cur, table_name = table_name, requested_page_id = row_id)
+        update = update_choice_count(cur, table_name = table_name)
+        return render_template('questions_page.html', table_name = table_name, update = update, select = select)
+
+@app.route('/test/results')
+def results():
+    #We may need additional query requests for the last page's question and the chosen answer to be saved
+    #If so, remember to put those in the section below this, like so
+    #return(render_template('q', table_name = table_name, select = select, QUERY_NAME=PUT HERE))
+
+    table_name = request.args.get('table_name', 'animals')
+    row_id = request.args.get('id', 0)
+    with conn.cursor() as cur:
+        select = select_page_data(cur, table_name = table_name, requested_page_id = row_id)
+        return render_template('q', table_name = table_name, select = select)
+
 def update_id(cur.cursor, nameOfChoices:str, choiceData:str,
                 selectedNumTimes:int, id:int
     cur.execute(f"""
